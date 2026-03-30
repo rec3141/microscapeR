@@ -11,11 +11,11 @@ Description: Provides downstream analysis tools for amplicon sequencing
     Bioconductor package and the Python microscape package.
 License: BSD_3_clause + file LICENSE
 Depends: R (>= 4.4)
-Imports: data.table, ape, Biostrings, DECIPHER, stats, utils, methods
+Imports: data.table, ape, Biostrings, DECIPHER, stats, utils
 Suggests: testthat (>= 3.0), BiocStyle, knitr, rmarkdown, dada2, Rtsne
 biocViews: Sequencing, Microbiome, Metagenomics, Clustering, Visualization
 URL: https://github.com/rec3141/microscapeR
 BugReports: https://github.com/rec3141/microscapeR/issues
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.3
