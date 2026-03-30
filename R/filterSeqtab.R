@@ -1,3 +1,5 @@
+#' @importFrom data.table is.data.table copy uniqueN ":=" ".N"
+#'
 #' @title Filter a Long-Format Sequence Table
 #'
 #' @description Applies a cascade of quality-control filters to a long-format

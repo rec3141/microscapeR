@@ -1,3 +1,6 @@
+#' @importFrom data.table is.data.table uniqueN dcast as.data.table melt ":="
+#' @importFrom stats cor
+#'
 #' @title SparCC-Style Correlation Network
 #'
 #' @description Computes a compositional correlation network from a
@@ -35,11 +38,10 @@
 #'
 #' @examples
 #' library(data.table)
-#' set.seed(42)
 #' dt <- data.table(
 #'     sample   = rep(paste0("S", 1:20), each = 10),
 #'     sequence = rep(paste0("seq", 1:10), 20),
-#'     count    = rpois(200, lambda = 50)
+#'     count    = rep(seq(10, 100, length.out = 10), 20)
 #' )
 #' edges <- sparccNetwork(dt, minPrevalence = 0.1, minCorrelation = 0.1)
 #' head(edges)

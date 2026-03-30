@@ -1,3 +1,6 @@
+#' @importFrom data.table is.data.table uniqueN dcast
+#' @importFrom stats as.dist dist prcomp
+#'
 #' @title Ordinate Samples and ASVs by Bray-Curtis Distance
 #'
 #' @description Computes a Bray-Curtis (or other) distance matrix from a
@@ -74,24 +77,9 @@ ordinateSamples <- function(dt, method = "tsne", metric = "bray",
     ## -----------------------------------------------------------------
     ## Bray-Curtis distance (manual implementation to avoid external deps)
     ## -----------------------------------------------------------------
-    bray_curtis <- function(x) {
-        n <- nrow(x)
-        d <- matrix(0, n, n)
-        for (i in seq_len(n - 1)) {
-            for (j in (i + 1):n) {
-                num   <- sum(abs(x[i, ] - x[j, ]))
-                denom <- sum(x[i, ] + x[j, ])
-                d[i, j] <- if (denom > 0) num / denom else 0
-                d[j, i] <- d[i, j]
-            }
-        }
-        rownames(d) <- colnames(d) <- rownames(x)
-        stats::as.dist(d)
-    }
-
     compute_dist <- function(x) {
         if (metric == "bray") {
-            bray_curtis(x)
+            .bray_curtis(x)
         } else {
             stats::dist(x, method = "euclidean")
         }

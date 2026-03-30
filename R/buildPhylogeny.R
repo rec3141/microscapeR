@@ -1,3 +1,7 @@
+#' @importFrom ape nj as.DNAbin dist.dna Ntip Nnode
+#' @importFrom Biostrings DNAStringSet width
+#' @importFrom DECIPHER AlignSeqs
+#'
 #' @title Build a Phylogenetic Tree from ASV Sequences
 #'
 #' @description Aligns ASV sequences using \code{DECIPHER::AlignSeqs},
@@ -26,7 +30,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' seqs <- c(
 #'     "ATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGC",
 #'     "ATGCATGCATGCATGCATGCATGCTTGCATGCATGCATGCATGCATGCATGC",

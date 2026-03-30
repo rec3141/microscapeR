@@ -1,3 +1,6 @@
+#' @importFrom data.table fread is.data.table
+#' @importFrom tools file_ext
+#'
 #' @title Load Sample Metadata
 #'
 #' @description Reads a MIMARKS-compliant (or custom) metadata file in TSV

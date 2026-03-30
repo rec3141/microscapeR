@@ -35,7 +35,7 @@ Aligns ASV sequences using \code{DECIPHER::AlignSeqs},
   neighbor-joining tree with \code{ape::nj}.
 }
 \examples{
-\dontrun{
+\donttest{
 seqs <- c(
     "ATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGC",
     "ATGCATGCATGCATGCATGCATGCTTGCATGCATGCATGCATGCATGCATGC",

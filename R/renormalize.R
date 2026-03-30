@@ -1,3 +1,5 @@
+#' @importFrom data.table is.data.table copy uniqueN data.table ":=" ".N"
+#'
 #' @title Renormalize Counts by Taxonomic Group
 #'
 #' @description Classifies ASVs into taxonomic groups (prokaryote,
@@ -64,17 +66,10 @@ renormalize <- function(dt, taxa) {
     ## -----------------------------------------------------------------
     all_seqs <- unique(dt$sequence)
 
-    ## Helper: find sequences matching a value at a given rank
-    find_at_rank <- function(rank_name, values) {
-        if (!rank_name %in% colnames(taxa)) return(character(0))
-        rownames(taxa)[taxa[, rank_name] %in% values &
-                           !is.na(taxa[, rank_name])]
-    }
-
-    chloroplast_seqs  <- find_at_rank("Order", "Chloroplast")
-    mitochondria_seqs <- find_at_rank("Family", "Mitochondria")
-    eukaryote_seqs    <- find_at_rank("Domain", "Eukaryota")
-    prokaryote_seqs   <- find_at_rank("Domain", c("Bacteria", "Archaea"))
+    chloroplast_seqs  <- .find_at_rank(taxa, "Order", "Chloroplast")
+    mitochondria_seqs <- .find_at_rank(taxa, "Family", "Mitochondria")
+    eukaryote_seqs    <- .find_at_rank(taxa, "Domain", "Eukaryota")
+    prokaryote_seqs   <- .find_at_rank(taxa, "Domain", c("Bacteria", "Archaea"))
 
     ## Remove organelles from prokaryote set
     prokaryote_seqs <- setdiff(prokaryote_seqs,

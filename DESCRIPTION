@@ -10,8 +10,8 @@ Description: Provides downstream analysis tools for amplicon sequencing
     correlation network analysis. Designed as a companion to the dada2
     Bioconductor package and the Python microscape package.
 License: BSD_3_clause + file LICENSE
-Depends: R (>= 4.4)
-Imports: data.table, ape, Biostrings, DECIPHER, stats, utils
+Depends: R (>= 4.5)
+Imports: data.table, ape, Biostrings, DECIPHER, stats, tools
 Suggests: testthat (>= 3.0), BiocStyle, knitr, rmarkdown, dada2, Rtsne
 biocViews: Sequencing, Microbiome, Metagenomics, Clustering, Visualization
 URL: https://github.com/rec3141/microscapeR

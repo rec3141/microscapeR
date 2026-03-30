@@ -13,14 +13,14 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # Installation
 
 Install microscapeR from Bioconductor:
 
-```{r install}
+```{r install, eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("microscapeR")
@@ -38,9 +38,59 @@ produced by DADA2. The typical workflow proceeds through these steps:
 5. **Ordinate** samples with `ordinateSamples()`
 6. **Infer** co-occurrence networks with `sparccNetwork()`
 
-# Quick Start
+# Worked Example
 
-```{r quickstart}
+This example uses small synthetic data so it runs without external files.
+
+```{r example}
+library(microscapeR)
+library(data.table)
+
+# Create a small test data.table
+dt <- data.table(
+    sample = rep(paste0("S", 1:6), each = 8),
+    sequence = rep(paste0("SEQ", 1:8), 6),
+    count = c(100, 50, 30, 10, 5, 20, 15, 25,
+              80, 40, 20, 8, 3, 18, 12, 22,
+              120, 60, 35, 12, 6, 24, 14, 28,
+              90, 45, 25, 11, 4, 21, 13, 26,
+              110, 55, 32, 9, 7, 19, 16, 23,
+              95, 48, 28, 10, 5, 22, 11, 27)
+)
+
+# Filter
+result <- filterSeqtab(dt, minLength = 3, minSamples = 2, minSeqs = 5,
+                        minReads = 10)
+result$stats
+
+# Ordinate
+coords <- ordinateSamples(result$filtered, method = "pca")
+head(coords$sampleCoords)
+
+# Network
+edges <- sparccNetwork(result$filtered, minPrevalence = 0.5, minCorrelation = 0.1)
+head(edges)
+```
+
+Building a phylogeny requires MAFFT to be installed on the system, so we
+wrap this step in `\donttest{}`:
+
+```{r phylogeny, eval=FALSE}
+seqs <- c(
+    "ATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGC",
+    "ATGCATGCATGCATGCATGCATGCTTGCATGCATGCATGCATGCATGCATGC",
+    "ATGCATGCATGCATGCATGCATGCATGCAAGCATGCATGCATGCATGCATGC",
+    "ATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCTTGCATGCATGC"
+)
+phylo <- buildPhylogeny(seqs, cpus = 1L)
+plot(phylo$tree)
+```
+
+# Quick Start (Full Workflow)
+
+With real data, the full workflow looks like:
+
+```{r quickstart, eval=FALSE}
 library(microscapeR)
 library(data.table)
 
