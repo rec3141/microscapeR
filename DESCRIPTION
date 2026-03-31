@@ -1,7 +1,7 @@
 Package: microscapeR
 Title: Downstream Analysis Tools for Amplicon Sequencing Data
 Version: 0.99.0
-Authors@R: person("R. Eric", "Collins", email="recollins@alaska.edu",
+Authors@R: person("R. Eric", "Collins", email="rec3141@gmail.com",
                    role=c("cre","aut"))
 Description: Provides downstream analysis tools for amplicon sequencing
     data produced by DADA2. Includes sequence table quality filtering,
