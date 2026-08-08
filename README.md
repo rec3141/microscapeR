@@ -1,3 +1,17 @@
+> **Deprecated and archived.**
+> This package is no longer maintained. The amplicon workflow now lives in a
+> single place — the [`illumina_amplicon`](https://github.com/rec3141/danaSeq/tree/main/illumina_amplicon)
+> stage of [danaSeq](https://github.com/rec3141/danaSeq) — which runs one
+> Python engine rather than parallel Python and R implementations.
+>
+> This repository is kept as a reference snapshot. `inst/scripts/` holds the
+> pipeline's R engine as it last ran, and `autoTrim()` carries the truncation
+> logic, both verified against the Python engine before archiving.
+>
+> Maintaining mirrored implementations is what motivated the consolidation:
+> the truncation floor lived in three places across two repositories, so
+> fixing one of them recovered nothing.
+
 # microscapeR
 
 **Downstream analysis tools for amplicon sequencing data**
