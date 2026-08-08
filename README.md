@@ -7,10 +7,7 @@
 > This repository is kept as a reference snapshot. `inst/scripts/` holds the
 > pipeline's R engine as it last ran, and `autoTrim()` carries the truncation
 > logic, both verified against the Python engine before archiving.
->
-> Maintaining mirrored implementations is what motivated the consolidation:
-> the truncation floor lived in three places across two repositories, so
-> fixing one of them recovered nothing.
+
 
 # microscapeR
 
