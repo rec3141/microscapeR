@@ -21,9 +21,6 @@
 ## Installation
 
 ```r
-# From Bioconductor (once accepted)
-BiocManager::install("microscapeR")
-
 # Development version from GitHub
 BiocManager::install("rec3141/microscapeR")
 ```
